@@ -37,7 +37,7 @@ services:
       - 8082:8080
   telegraf:
     image: "telegraf:1.11-alpine"
-    command: bash -c "/wait-for-it.sh influxdb:8086 && telegraf"
+    command: bash -c "/wait-for-it.sh -t 0 influxdb:8086 && telegraf"
     volumes:
       - "./telegraf.conf:/etc/telegraf/telegraf.conf:ro"
       - "./wait-for-it.sh:/wait-for-it.sh"

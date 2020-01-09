@@ -21,7 +21,8 @@ Running the example
 -------------------
 From CL in *copper-influxdb run ***docker-compose up***.
 All necessary images will be downloaded and started.  
-The example app needs some time to startup.
+The example app needs some time to startup. 
+This example will only run on machines with enough CPU and RAM resources. 
 
 
 Viewing influxdb data in Copper-GUI
@@ -30,6 +31,7 @@ Copper-GUI is available at http://localhost:8081. Log on with admin/admin and cl
 On the right you will see a button ***Connect to InfluxDb***.  
 Press the button and enter http://localhost:8686 for the influxdb connection and press submit.
 If connection is successful you will see a green dot and a pop up with a confirmation message.
+Don't forget to set the "Enable Influx Connection" in the connection popup to enabled.
 With influxdb connection enabled you will see the data from influxdb in your Copper GUI chart.
 
 Viewing Charts with Chronograf

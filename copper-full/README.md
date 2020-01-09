@@ -23,6 +23,7 @@ This will start a few workflow instances with different validation results;
 For order ids < 1 a runtime exception is thrown and the corresponding workflow instance
 is set to ERROR. 
 Audit trail messages and workflow instances in state ERROR/INVALID can be viewed in Copper-GUI.
+Set **Fetch Period** in Copper-GUI to 5 seconds to see copper time-series data immediately in the statistics chart.
 
 Copper-GUI
 ---------- 

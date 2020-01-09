@@ -1,8 +1,8 @@
-Copper Examples
+Copper examples
 ===============
-Copper Examples is the result of a workflow engine review. 
+Copper Examples is the result of a workflow engine review I did. 
 The examples are showing how copper workflow engine can be used in a cloud environment.
-A lightweight JEE server together with a postgres database are used as runtime environment packaged in docker containers.    
+A lightweight JEE server and a postgres database are used together with docker container support.    
 In this setup copper-engine runs within a webapp that utilizes JPA, Pooling and Jersey REST support provided by a
 payara micro server.
 
@@ -16,7 +16,7 @@ working of copper engine.
 - Copper-influxdb shows how to add a time-series database to collect important key parameter over time. 
 It comes with an additional alternative GUI to visualize the data. 
 
-Detailed project instructions can be found in the README files under the corresponding project dir.
+Detailed project instructions can be found in README files under the corresponding project dir.
 
 Limitations
 -----------
@@ -25,12 +25,13 @@ compilation' feature is not available.
 
 Prerequisites
 ------------- 
-A working docker installation with docker-compose is needed for execution. All instructions in the README files are
-for a linux based OS.
+A working docker installation together with docker-compose is needed for execution.
+For projects with Java files JDK 8 or higher is needed. 
+All command specific instructions are for linux based systems.
  
 Testing
 ------
-You can immediately start tests from your local browser with configured test url. 
+You can immediately start tests from your local browser with a preconfigured test url. 
 ***See also instructions in README files in the corresponding project dir***.   
 Log output is send to stdout. 
 
