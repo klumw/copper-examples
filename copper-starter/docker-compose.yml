@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  copper:
+    image: "payara/micro:5.194"
+    volumes:
+      - "./target:/opt/payara/deployments"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+  postgres:
+    image: "postgres:9.6.16-alpine"
+    ports:
+      - 5432:5432

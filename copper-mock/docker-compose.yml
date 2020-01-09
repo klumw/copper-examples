@@ -1,0 +1,8 @@
+version: '3.1'
+services:
+  mock:
+    image: "payara/micro:5.194"
+    volumes:
+      - "./target:/opt/payara/deployments"
+    ports:
+      - 8082:8080

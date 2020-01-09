@@ -1,0 +1,131 @@
+<!--
+  ~ Copyright 2020 Winfried Klum
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+       		http://www.springframework.org/schema/jee
+       		http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" lazy-init="false">
+        <property name="locations">
+            <list>
+                <value>classpath:localOverride.${user.name}.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+
+    </bean>
+
+
+    <bean id="wfRepository" class="org.copperengine.ext.wfrepo.classpath.ClasspathWorkflowRepository" scope="singleton"
+          init-method="start" destroy-method="shutdown">
+        <!-- put java package name of your workflow classes here (a package list is also possible) -->
+        <constructor-arg value="org.wkl.copper.full.wf"/>
+    </bean>
+
+    <jee:jndi-lookup id="datasource_default" jndi-name="java:global/CopperDataSource"/>
+
+    <!-- Fixed PostgreSQLDialect class with fix for auditTrail message type -->
+    <bean id="dbDialect" class="org.wkl.copper.full.engine.PostgreSQLDialectFix" scope="singleton"
+          init-method="startup">
+        <property name="wfRepository" ref="wfRepository"/>
+        <property name="runtimeStatisticsCollector" ref="statisticsCollector"/>
+    </bean>
+
+    <bean id="persistent.dbStorage" class="org.copperengine.core.persistent.ScottyDBStorage" scope="singleton">
+        <property name="transactionController" ref="txnController"/>
+        <property name="dialect" ref="dbDialect"/>
+        <property name="batcher" ref="batcher"/>
+        <property name="checkDbConsistencyAtStartup" value="true"/>
+    </bean>
+
+    <bean id="txnController" class="org.copperengine.core.persistent.txn.CopperTransactionController" scope="singleton">
+        <property name="dataSource" ref="datasource_default"/>
+    </bean>
+
+    <bean id="statisticsCollector" class="org.copperengine.core.monitoring.LoggingStatisticCollector"
+          init-method="start" destroy-method="shutdown"/>
+
+    <bean id="batcher" class="org.copperengine.core.batcher.impl.BatcherImpl" scope="singleton" init-method="startup"
+          destroy-method="shutdown">
+        <constructor-arg type="int">
+            <value>3</value>
+        </constructor-arg>
+        <property name="statisticsCollector" ref="statisticsCollector"/>
+        <property name="batchRunner">
+            <bean class="org.copperengine.core.batcher.RetryingTxnBatchRunner">
+                <property name="dataSource" ref="datasource_default"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="persistent.ProcessorPool.default" class="org.copperengine.core.persistent.PersistentPriorityProcessorPool"
+          scope="singleton">
+        <constructor-arg type="java.lang.String">
+            <value>P#DEFAULT</value>
+        </constructor-arg>
+        <constructor-arg type="org.copperengine.core.persistent.txn.TransactionController">
+            <ref bean="txnController"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="persistent.PPManager" class="org.copperengine.core.common.DefaultProcessorPoolManager" scope="singleton">
+        <property name="processorPools">
+            <list>
+                <ref bean="persistent.ProcessorPool.default"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="persistent.engine" class="org.copperengine.core.persistent.PersistentScottyEngine" scope="singleton"
+          init-method="startup" destroy-method="shutdown">
+        <property name="idFactory">
+            <bean class="org.copperengine.core.common.JdkRandomUUIDFactory"></bean>
+        </property>
+        <property name="processorPoolManager" ref="persistent.PPManager"/>
+        <property name="dependencyInjector">
+            <bean class="org.copperengine.spring.SpringDependencyInjector"></bean>
+        </property>
+        <property name="dbStorage" ref="persistent.dbStorage"/>
+        <property name="wfRepository" ref="wfRepository"/>
+        <property name="statisticsCollector" ref="statisticsCollector"/>
+    </bean>
+    <!-- Compress messages for audit trail. Remove if you want to see messages in db in plain text -->
+    <bean id="messagePostProcessor" class="org.copperengine.core.audit.CompressedBase64PostProcessor"/>
+
+    <bean id="auditTrail" class="org.copperengine.core.audit.BatchingAuditTrail" scope="singleton"
+          init-method="startup">
+        <property name="batcher" ref="batcher"/>
+        <property name="dataSource" ref="datasource_default"/>
+        <property name="messagePostProcessor" ref="messagePostProcessor"/>
+    </bean>
+
+    <bean id="auditTrailQuery" class="org.copperengine.core.audit.ScottyAuditTrailQueryEngine" scope="singleton">
+        <property name="messagePostProcessor" ref="messagePostProcessor"/>
+        <property name="dbStorage" ref="persistent.dbStorage"/>
+    </bean>
+
+    <bean class="org.copperengine.spring.JmxExporter" init-method="startup" destroy-method="shutdown"/>
+    <bean id="outputAdapter" class="org.wkl.copper.full.adapter.OutputAdapter" scope="singleton">
+        <property name="engine" ref="persistent.engine"/>
+    </bean>
+</beans>

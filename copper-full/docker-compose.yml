@@ -1,0 +1,40 @@
+version: '3.1'
+services:
+  copper:
+    image: "payara/micro:5.194"
+    entrypoint:
+      - java
+      - -XX:+UseContainerSupport
+      - -XX:MaxRAMPercentage=90.0
+      - -Dcom.sun.management.jmxremote.port=1099
+      - -Dcom.sun.management.jmxremote.rmi.port=1099
+      - -Dcom.sun.management.jmxremote.authenticate=false
+      - -Dcom.sun.management.jmxremote.ssl=false
+      - -jar
+      - payara-micro.jar
+      - --deploymentDir
+      - /opt/payara/deployments
+      - --nocluster
+    volumes:
+      - "./target:/opt/payara/deployments"
+    ports:
+      - 8080:8080
+      - 1099:1099
+    depends_on:
+      - postgres
+  postgres:
+    image: "postgres:9.6.16-alpine"
+    ports:
+      - 5432:5432
+  monitoring:
+    image: "copperengine/copper-monitoring:latest"
+    ports:
+      - 8081:8080
+    depends_on:
+      - copper
+  mock:
+    image: "klumw/copper-mock:latest"
+    ports:
+      - 8082:8080
+
+
