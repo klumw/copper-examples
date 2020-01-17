@@ -49,7 +49,8 @@ expected.
 Resources
 ---------
 More information about Prometheus and Grafana can be found at:  
-https://prometheus.io/
+https://prometheus.io  
+https://github.com/prometheus/jmx_exporter  
 https://www.grafana.com
 
   
