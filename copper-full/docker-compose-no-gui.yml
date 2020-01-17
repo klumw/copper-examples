@@ -27,7 +27,7 @@ services:
     ports:
       - 5432:5432
   mock:
-    image: "copper-mock:latest"
+    image: "klumw/copper-mock"
     ports:
       - 8082:8080
 

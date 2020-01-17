@@ -5,7 +5,7 @@ copper engine with persistence.
 
 Running the example
 -------------------
-From CL in *copper-starter dir* run ***./mvnw clean install*** command. 
+From CL in *copper-starter* dir run ***./mvnw clean install*** command. 
 After successful compilation run ***docker-compose up***.
 
 Testing

@@ -27,13 +27,16 @@ services:
     ports:
       - 5432:5432
   monitoring:
-    image: "copperengine/copper-monitoring:latest"
+    image: "copperengine/copper-monitoring"
     ports:
       - 8081:8080
+    environment:
+      - JMX_HOST=copper
+      - JMX_PORT=1099
     depends_on:
       - copper
   mock:
-    image: "klumw/copper-mock:latest"
+    image: "klumw/copper-mock"
     ports:
       - 8082:8080
 

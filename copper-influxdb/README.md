@@ -21,8 +21,7 @@ Running the example
 -------------------
 From CL in *copper-influxdb run ***docker-compose up***.
 All necessary images will be downloaded and started.  
-The example app needs some time to startup. 
-This example will only run on machines with enough CPU and RAM resources. 
+This example requires a machine with high CPU and RAM resources. 
 
 
 Viewing influxdb data in Copper-GUI
@@ -37,11 +36,11 @@ With influxdb connection enabled you will see the data from influxdb in your Cop
 Viewing Charts with Chronograf
 ------------------------------
 Chronograf GUI is available at http://localhost:8888.  
-In Chronograf GUI go to Configuration to make sure that you have a valid connection to influxdb.
+In Chronograf GUI go to Configuration and make sure that you have a valid connection to influxdb.
 Next you can create new charts by clicking on the Dashboard menu.  
 Click create new Dashboard and and the ***Add Data***.  
 Click on ***telegraf.autogen*** to see possible parameters of Copper Workflow Engine. 
-Next click on ***default@172.17.0.1:1099 copper parameters will appear on the right.
+Next click on ***default@copper:1099 copper parameters will appear on the right.
 Now you can select the parameters that you want to vizualise.
 
 Resources

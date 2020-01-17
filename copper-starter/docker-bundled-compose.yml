@@ -2,9 +2,9 @@ version: '3.1'
 services:
   copper:
     build: .
-    image: copper-starter:latest
+    image: "copper-starter:latest"
     ports:
-      - "8080:8080"
+      - 8080:8080
   postgres:
     image: "postgres:9.6.16-alpine"
     ports:

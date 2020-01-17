@@ -73,7 +73,7 @@ public class OrderCheckWorkflow extends PersistentWorkflow<Order> {
     private void checkOrderId() {
         if (getData().getOrderId() <= 0) {
             logger.info("Order id is invalid.\n -Next we throw a Runtime Exception and the workflow instance is set to ERROR.\n -See also Copper GUI -> broken workflows.");
-            throw new RuntimeException("Invalid order id: " + getData().getOrderId() + "order ids must be > 0");
+            throw new RuntimeException("Invalid order id: " + getData().getOrderId() + ", order ids must be > 0");
         }
     }
 

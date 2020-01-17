@@ -1,7 +1,8 @@
 Copper examples
 ===============
-Copper Examples is the result of a workflow engine review I did. 
-The examples are showing how copper workflow engine can be used in a cloud environment.
+Copper examples is the result of a workflow engine review I did.
+  
+The examples are showing how copper workflow engine can be used in a cloud/microservice environment.
 A lightweight JEE server and a postgres database are used together with docker container support.    
 In this setup copper-engine runs within a webapp that utilizes JPA, Pooling and Jersey REST support provided by a
 payara micro server.
@@ -21,7 +22,7 @@ Detailed project instructions can be found in README files under the correspondi
 Limitations
 -----------
 Workflow files are already compiled and read from the classpath. Therefore the 'on the fly
-compilation' feature is not available.
+compilation' feature is not available. Therefore workflow source code in Copper-GUI is not available   
 
 Prerequisites
 ------------- 
