@@ -14,8 +14,11 @@ working of copper engine.
 
 - Copper-full project provides Copper-GUI and a REST based Mock-Server to run more realistic tests against copper-engine.
 
-- Copper-influxdb shows how to add a time-series database to collect important key parameter over time. 
-It comes with an additional alternative GUI to visualize the data. 
+- Copper-influxdb shows how to add a time-series database to collect key parameter over time. 
+In this example the Chronograf GUI is used to visualize the metrics.
+
+- Copper-prometheus show how to add the prometheus time-series database to collect key parameter over time.
+In this example the Grafana GUI is used to visualize the metrics. 
 
 Detailed project instructions can be found in README files under the corresponding project dir.
 
