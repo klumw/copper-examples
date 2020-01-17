@@ -12,20 +12,20 @@ Example projects
 - Copper-starter project is a simple setup to test some core functionality. It has a simplistic workflow to show the basic 
 working of copper engine.
 
-- Copper-full project provides Copper-GUI and a REST based Mock-Server to run more realistic tests against copper-engine.
+- Copper-full project provides Copper-GUI and a REST based mock-server to run more realistic tests against copper-engine.
 
 - Copper-influxdb shows how to add a time-series database to collect key parameter over time. 
 In this example the Chronograf GUI is used to visualize the metrics.
 
-- Copper-prometheus show how to add the prometheus time-series database to collect key parameter over time.
+- Copper-prometheus shows how to add the prometheus time-series database to collect key parameter over time.
 In this example the Grafana GUI is used to visualize the metrics. 
 
-Detailed project instructions can be found in README files under the corresponding project dir.
+Detailed project instructions can be found in the README files under the corresponding project dir.
 
 Limitations
 -----------
 Workflow files are already compiled and read from the classpath. Therefore the 'on the fly
-compilation' feature is not available. Therefore workflow source code in Copper-GUI is not available   
+compilation' feature is not available. Workflow source code in Copper-GUI is not available.   
 
 Prerequisites
 ------------- 
@@ -36,7 +36,7 @@ All command specific instructions are for linux based systems.
 Testing
 ------
 You can immediately start tests from your local browser with a preconfigured test url. 
-***See also instructions in README files in the corresponding project dir***.   
+***See also instructions in the README files in the corresponding project dir***.   
 Log output is send to stdout. 
 
 Building Docker Images
