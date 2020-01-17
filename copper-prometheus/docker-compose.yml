@@ -1,0 +1,58 @@
+version: '3.1'
+services:
+  copper:
+    image: "klumw/copper-full:prometheus"
+    entrypoint:
+      - java
+      - -javaagent:/opt/payara/jmx_prometheus_javaagent-0.12.0.jar=8083:jmxconfig.yml
+      - -XX:+UseContainerSupport
+      - -XX:MaxRAMPercentage=90.0
+      - -Dcom.sun.management.jmxremote.port=1099
+      - -Dcom.sun.management.jmxremote.rmi.port=1099
+      - -Dcom.sun.management.jmxremote.authenticate=false
+      - -Dcom.sun.management.jmxremote.ssl=false
+      - -jar
+      - payara-micro.jar
+      - --deploymentDir
+      - /opt/payara/deployments
+      - --nocluster
+    ports:
+      - 8080:8080
+      - 8083:8083
+    depends_on:
+      - postgres
+      - mock
+  postgres:
+    image: "postgres:9.6.16-alpine"
+    ports:
+      - 5432:5432
+  monitoring:
+    image: "copperengine/copper-monitoring"
+    ports:
+      - 8081:8080
+    environment:
+      - JMX_HOST=copper
+      - JMX_PORT=1099
+    depends_on:
+      - copper
+  mock:
+    image: "klumw/copper-mock"
+    ports:
+      - 8082:8080
+  prometheus:
+    image: "prom/prometheus:v2.15.2"
+    ports:
+      - 9090:9090
+    volumes:
+      - ./resources/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - copper
+  grafana:
+     image: "grafana/grafana:6.5.3"
+     ports:
+      - 3000:3000
+     depends_on:
+       - prometheus
+
+
+

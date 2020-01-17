@@ -1,0 +1,11 @@
+---
+lowercaseOutputLabelNames: true
+lowercaseOutputName: true
+rules:
+  - pattern: "copper.engine<name=(\\w+).(\\w+)><>(\\w+): (\\d+)"
+    name: copper_$1_$2_$3
+    value: $4
+    labels: {}
+    help: "Copper metric $1 $2 $3"
+    type: COUNTER
+    attrNameSnakeCase: false
