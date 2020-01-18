@@ -9,16 +9,18 @@ payara micro server.
 
 Example projects
 ----------------
-- Copper-starter project is a simple setup to test some core functionality. It has a simplistic workflow to show the basic 
+- ***copper-starter*** project is a simple setup to test some core functionality. It has a simplistic workflow to show the basic 
 working of copper engine.
 
-- Copper-full project provides Copper-GUI and a REST based mock-server to run more realistic tests against copper-engine.
+- ***copper-full*** project provides Copper-GUI and a REST based mock-server to run more realistic tests against copper-engine.
 
-- Copper-influxdb shows how to add a time-series database to collect key parameter over time. 
-In this example the Chronograf GUI is used to visualize the metrics.
+- ***copper-influxdb*** shows how to add a time-series database to collect metrics. 
+In this example Chronograf GUI is used to visualize the metrics.
 
-- Copper-prometheus shows how to add the prometheus time-series database to collect key parameter over time.
-In this example the Grafana GUI is used to visualize the metrics. 
+- ***copper-prometheus*** shows how to add the prometheus time-series database to collect metrics.
+In this example Grafana GUI is used to visualize the metrics.
+
+- ***copper-kubernetes*** shows how to setup the copper-full example using Kubernetes 
 
 Detailed project instructions can be found in the README files under the corresponding project dir.
 
