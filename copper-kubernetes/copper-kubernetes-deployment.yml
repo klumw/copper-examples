@@ -101,6 +101,12 @@ spec:
   selector:
     app: copper-full
   ports:
-    - protocol: TCP
+    - name: jmx
+      protocol: TCP
       port: 1099
       targetPort: jmx-port
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: copper-input
+---
