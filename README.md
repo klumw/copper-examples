@@ -2,7 +2,7 @@ Copper examples
 ===============
 Copper examples is the result of a workflow engine review I did.
   
-The examples are showing how copper workflow engine can be used in a cloud/microservice environment.
+The examples are showing how the copper workflow engine can be used in a cloud/microservice environment.
 A lightweight JEE server and a postgres database are used together with docker container support.    
 In this setup copper-engine runs within a webapp that utilizes JPA, Pooling and Jersey REST support provided by a
 payara micro server.
@@ -22,6 +22,10 @@ In this example Grafana GUI is used to visualize the metrics.
 
 - ***copper-kubernetes*** shows how to setup the copper-full example using Kubernetes 
 
+Documentation
+-------------
+To get an overview of Copper Engine and Copper GUI you should first read the document **Copper-Cloud-Examples.pdf** in the
+*docs* folder.
 Detailed project instructions can be found in the README files under the corresponding project dir.
 
 Limitations

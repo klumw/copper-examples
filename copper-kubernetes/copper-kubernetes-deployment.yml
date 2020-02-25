@@ -14,25 +14,32 @@ spec:
         - name: db-port
           containerPort: 5432
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: ReplicaSet
 metadata:
   name: copper-full
-  namespace: default
   labels:
     app: copper-full
 spec:
-  containers:
-    - name: copper-full
-      image: klumw/copper-full
-      command: ["java"]
-      args: ["-XX:+UseContainerSupport","-XX:MaxRAMPercentage=90.0","-Dcom.sun.management.jmxremote.port=1099","-Dcom.sun.management.jmxremote.rmi.port=1099","-Dcom.sun.management.jmxremote.authenticate=false","-Dcom.sun.management.jmxremote.ssl=false","-jar","payara-micro.jar","--deploymentDir","/opt/payara/deployments","--nocluster"]
-      ports:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: middletier
+  template:
+    metadata:
+      labels:
+        tier: middletier
+    spec:    
+      containers:
+      - name: copper-full
+        image: klumw/copper-full
+        command: ["java"]
+        args: ["-XX:+UseContainerSupport","-XX:MaxRAMPercentage=90.0","-Dcom.sun.management.jmxremote.port=1099","-Dcom.sun.management.jmxremote.rmi.port=1099","-Dcom.sun.management.jmxremote.authenticate=false","-Dcom.sun.management.jmxremote.ssl=false","-jar","payara-micro.jar","--deploymentDir","/opt/payara/deployments","--nocluster"]
+        ports:
         - name: copper-input
           containerPort: 8080
         - name: jmx-port
           containerPort: 1099
-          hostPort: 1099
 ---
 apiVersion: v1
 kind: Pod
@@ -99,7 +106,7 @@ metadata:
   name: copper
 spec:
   selector:
-    app: copper-full
+    tier: middletier
   ports:
     - name: jmx
       protocol: TCP
