@@ -1,14 +1,39 @@
 Copper examples
 ===============
 Copper examples is the result of a workflow engine review I did.
+The goal of my review was to find a workflow engine with the following features:
+- Fully automated workflow execution
+- High Performance/Load
+- Auto-Recovery
+- Cloud Ready
+- Ease of use
+- Multi node cloud deployments
+- Integration into an existing Java environment
+- Good Operational Insight
+- Easy to learn
+- Small footprint
+ 
+After examining 26 workflow engines the clear winner was Copper.
+One disadvantage of Copper was, that there were no cloud specific examples available.
+This was the reason why I created the Copper Cloud Examples.
+
+Copper doesn't feature a workflow modeler GUI.
+Using modelers for more than 10 years I don't think that this is a disadvantage.  
+A simple 'Hello World' looks great in a modeler, but with growing complexity UI models become 
+very fast confusing and hard to maintain.
+Copper workflows are just plain Java files, something that any Java developer knows inside out.
+
+One last thing that makes Copper a good choice is that it is under steady development for the last 7 years
+and if needed  you can get professional support.    
   
-The examples are showing how the copper workflow engine can be used in a cloud/microservice environment.
-A lightweight JEE server and a postgres database are used together with docker container support.    
-In this setup copper-engine runs within a webapp that utilizes JPA, Pooling and Jersey REST support provided by a
-payara micro server.
 
 Example projects
 ----------------
+Copper Cloud Examples shows how Copper can be used in a cloud/microservice environment.
+A lightweight JEE server and a PostgreSQL database are used together with docker container support.    
+In this setup copper-engine runs within a webapp that utilizes JPA, Pooling and Jersey REST support provided by a
+payara micro server.
+
 - ***copper-starter*** project is a simple setup to test some core functionality. It has a simplistic workflow to show the basic 
 working of copper engine.
 
