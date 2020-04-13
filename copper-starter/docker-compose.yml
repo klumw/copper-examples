@@ -1,7 +1,20 @@
 version: '3.1'
 services:
   copper:
-    image: "payara/micro:5.194"
+    image: "payara/micro:jdk11"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    entrypoint:
+      - java
+      - -XX:+UseContainerSupport
+      - -XX:MaxRAMPercentage=90.0
+      - -Dorg.copperengine.asm.api.version=7
+      - -jar
+      - payara-micro.jar
+      - --deploymentDir
+      - /opt/payara/deployments
+      - --nocluster
     volumes:
       - "./target:/opt/payara/deployments"
     ports:
@@ -9,6 +22,9 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: "postgres:9.6.16-alpine"
+    image: "postgres:12.2-alpine"
+    environment:
+       - POSTGRES_PASSWORD=postgres
+       - POSTGRES_USER=postgres
     ports:
       - 5432:5432

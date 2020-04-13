@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   mock:
-    image: "payara/micro:5.194"
+    image: "payara/micro:jdk11"
     volumes:
       - "./target:/opt/payara/deployments"
     ports:

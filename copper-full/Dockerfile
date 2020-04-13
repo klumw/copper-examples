@@ -1,4 +1,4 @@
-FROM payara/micro:5.194
+FROM payara/micro:5.201
 
 COPY ./target/copper-full-1.0-SNAPSHOT.war $DEPLOY_DIR
 ENTRYPOINT ["java","-XX:+UseContainerSupport","-XX:MaxRAMPercentage=90.0"]

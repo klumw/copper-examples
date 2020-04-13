@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   copper:
-    image: "payara/micro:5.194"
+    image: "payara/micro:5.201"
     entrypoint:
       - java
       - -XX:+UseContainerSupport
@@ -23,7 +23,10 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: "postgres:9.6.16-alpine"
+    image: "postgres:12.2-alpine"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
     ports:
       - 5432:5432
   mock:

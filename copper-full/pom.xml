@@ -29,7 +29,7 @@
     <artifactId>copper-full</artifactId>
     <packaging>war</packaging>
 
-    <name>copper-examples dependencies</name>
+    <name>copper-examples full</name>
     <dependencies>
         <!-- PostgreSQL Datasource -->
         <dependency>
@@ -41,6 +41,16 @@
         <dependency>
             <groupId>org.copper-engine</groupId>
             <artifactId>copper-coreengine</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.ow2.asm</groupId>
+                    <artifactId>org.ow2.asm:asm:8.0.1</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.ow2.asm</groupId>
+                    <artifactId>org.ow2.asm:asm-tree:8.0.1</artifactId>
+                </exclusion>
+            </exclusions>
             <version>${copper.engine.version}</version>
         </dependency>
         <dependency>
@@ -104,6 +114,7 @@
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
             <version>1.3.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -133,12 +144,7 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20190722</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>17.0.0</version>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

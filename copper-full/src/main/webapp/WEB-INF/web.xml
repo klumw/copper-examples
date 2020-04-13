@@ -51,8 +51,8 @@
         <server-name>postgres</server-name>
         <port-number>5432</port-number>
         <database-name>postgres</database-name>
-        <user>postgres</user>
-        <password>postgres</password>
+        <user>${ENV=POSTGRES_USER}</user>
+        <password>${ENV=POSTGRES_PASSWORD}</password>
         <!-- connection pool size -->
         <initial-pool-size>10</initial-pool-size>
         <max-pool-size>200</max-pool-size>

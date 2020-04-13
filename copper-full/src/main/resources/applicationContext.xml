@@ -44,8 +44,7 @@
 
     <jee:jndi-lookup id="datasource_default" jndi-name="java:global/CopperDataSource"/>
 
-    <!-- Fixed PostgreSQLDialect class with fix for auditTrail message type -->
-    <bean id="dbDialect" class="org.wkl.copper.full.engine.PostgreSQLDialectFix" scope="singleton"
+    <bean id="dbDialect" class="org.copperengine.core.persistent.PostgreSQLDialect" scope="singleton"
           init-method="startup">
         <property name="wfRepository" ref="wfRepository"/>
         <property name="runtimeStatisticsCollector" ref="statisticsCollector"/>

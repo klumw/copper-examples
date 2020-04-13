@@ -1,7 +1,10 @@
 version: '3.1'
 services:
   copper:
-    image: "payara/micro:5.194"
+    image: "payara/micro:jdk11"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
     entrypoint:
       - java
       - -XX:+UseContainerSupport
@@ -10,6 +13,7 @@ services:
       - -Dcom.sun.management.jmxremote.rmi.port=1099
       - -Dcom.sun.management.jmxremote.authenticate=false
       - -Dcom.sun.management.jmxremote.ssl=false
+      - -Dorg.copperengine.asm.api.version=7
       - -jar
       - payara-micro.jar
       - --deploymentDir
@@ -23,7 +27,10 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: "postgres:9.6.16-alpine"
+    image: "postgres:12.2-alpine"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
     ports:
       - 5432:5432
   monitoring:

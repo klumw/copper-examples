@@ -40,7 +40,7 @@ public class Workflow extends PersistentWorkflow<WorkflowData> {
     }
 
     private void sleep(int seconds) throws Interrupt {
-        logger.info("Waiting for {} seconds, doing nothing at all ", seconds);
+        logger.info("Waiting for {} seconds. Workflow instance data is persisted to database during wait", seconds);
         wait(WaitMode.ALL, seconds * 1000, getEngine().createUUID());
     }
 
