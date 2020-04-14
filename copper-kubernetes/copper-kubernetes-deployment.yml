@@ -9,7 +9,12 @@ metadata:
 spec:
   containers:
     - name: postgres-db
-      image: postgres:9.6.16-alpine
+      image: postgres:12.2-alpine
+      env:
+        - name: POSTGRES_PASSWORD
+          value: "postgres"
+        - name: POSTGRES_USER
+          value: "postgres"
       ports:
         - name: db-port
           containerPort: 5432
@@ -33,8 +38,11 @@ spec:
       containers:
       - name: copper-full
         image: klumw/copper-full
-        command: ["java"]
-        args: ["-XX:+UseContainerSupport","-XX:MaxRAMPercentage=90.0","-Dcom.sun.management.jmxremote.port=1099","-Dcom.sun.management.jmxremote.rmi.port=1099","-Dcom.sun.management.jmxremote.authenticate=false","-Dcom.sun.management.jmxremote.ssl=false","-jar","payara-micro.jar","--deploymentDir","/opt/payara/deployments","--nocluster"]
+        env:
+          - name: POSTGRES_PASSWORD
+            value: "postgres"
+          - name: POSTGRES_USER
+            value: "postgres"
         ports:
         - name: copper-input
           containerPort: 8080
