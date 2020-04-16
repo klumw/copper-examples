@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   copper:
-    image: "payara/micro:jdk11"
+    image: "klumw/payara-micro:5.201-jdk11"
     environment:
       - "POSTGRES_PASSWORD=${DB_PWD}"
       - "POSTGRES_USER=${DB_USER}"
