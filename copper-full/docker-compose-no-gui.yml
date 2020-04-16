@@ -10,6 +10,7 @@ services:
       - -Dcom.sun.management.jmxremote.rmi.port=8686
       - -Dcom.sun.management.jmxremote.authenticate=false
       - -Dcom.sun.management.jmxremote.ssl=false
+      - -Dorg.copperengine.asm.api.version=7
       - -jar
       - payara-micro.jar
       - --deploymentDir
@@ -25,8 +26,8 @@ services:
   postgres:
     image: "postgres:12.2-alpine"
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
+      - "POSTGRES_PASSWORD=${DB_PWD}"
+      - "POSTGRES_USER=${DB_USER}"
     ports:
       - 5432:5432
   mock:

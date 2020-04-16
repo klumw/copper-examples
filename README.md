@@ -24,7 +24,7 @@ very fast confusing and hard to maintain.
 Copper workflows are just plain Java files, something that any Java developer knows inside out.
 
 One last thing that makes Copper a good choice is that it is under steady development for the last 7 years
-and if needed  you can get professional support.    
+and you can get professional support if needed.    
   
 
 Example projects
@@ -77,7 +77,7 @@ To create customized docker images run a docker build with the **Dockerfile** un
 Warning
 -------
 Examples in this repo are for exploration only and are **NOT** production ready. 
-Especially security settings and passwords are not set.  
+Especially security settings and passwords are not set for some resources.  
 
 License
 -------

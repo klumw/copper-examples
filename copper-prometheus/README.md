@@ -34,7 +34,7 @@ From Home Dashboard choose create first data source.
 Select Prometheus, in the URL enter http://prometheus:9090.
 Press the ***Save and Test*** button. If connection to prometheus is ok 
 you will see a confirmation popup.
-Now you to your Home Dashboard and click ***Create your first Dashboard***, choose ***Add Query***
+Now go to *Home Dashboard* and click ***Create your first Dashboard***, choose ***Add Query***
 and select your prometheus datasource from the ***Query*** drop down.
 In the query panel click ***Metrics*** to select metric data for copper engine.
 Set ***Custom time range*** for your dashboard to 5 minutes to be able to see recent data.

@@ -14,7 +14,7 @@ Open your local browser and enter
 ***http://localhost:8080/copper/rest/customer/accounts/363633/22***  
 This will start a workflow instance with personid=363633,age=22;
 
-The workflow instance will not do anything meaningful, it just waits for 10 seconds ending
+The workflow instance won't do anything meaningful, it just waits for 10 seconds ending
 the workflow instance with a log message.
-A more elaborated workflow example is available in the copper-full project.
+A more elaborated workflow example is available under the copper-full project.
 

@@ -1,7 +1,17 @@
 version: '3.1'
 services:
   mock:
-    image: "payara/micro:jdk11"
+    image: "klumw/payara-micro:5.201-jdk11"
+    entrypoint:
+      - java
+      - -XX:+UseContainerSupport
+      - -XX:MaxRAMPercentage=90.0
+      - -jar
+      - payara-micro.jar
+      - --deploymentDir
+      - /opt/payara/deployments
+      - --name
+      - "copper-mock"
     volumes:
       - "./target:/opt/payara/deployments"
     ports:

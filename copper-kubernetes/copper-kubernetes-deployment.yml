@@ -37,7 +37,7 @@ spec:
     spec:    
       containers:
       - name: copper-full
-        image: klumw/copper-full:jdk11_1
+        image: klumw/copper-full:5.201-jdk11
         env:
           - name: POSTGRES_PASSWORD
             value: "postgres"

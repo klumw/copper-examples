@@ -1,20 +1,10 @@
 version: '3.1'
 services:
   copper:
-    image: "klumw/copper-full:latest"
-    entrypoint:
-      - java
-      - -XX:+UseContainerSupport
-      - -XX:MaxRAMPercentage=90.0
-      - -Dcom.sun.management.jmxremote.port=1099
-      - -Dcom.sun.management.jmxremote.rmi.port=1099
-      - -Dcom.sun.management.jmxremote.authenticate=false
-      - -Dcom.sun.management.jmxremote.ssl=false
-      - -jar
-      - payara-micro.jar
-      - --deploymentDir
-      - /opt/payara/deployments
-      - --nocluster
+    image: "klumw/copper-full:5.201-jdk11"
+    environment:
+      - "POSTGRES_PASSWORD=${DB_PWD}"
+      - "POSTGRES_USER=${DB_USER}"
     ports:
       - 8080:8080
       - 1099:1099
@@ -22,7 +12,10 @@ services:
       - postgres
       - mock
   postgres:
-    image: "postgres:9.6.16-alpine"
+    image: "postgres:12.2-alpine"
+    environment:
+      - "POSTGRES_PASSWORD=${DB_PWD}"
+      - "POSTGRES_USER=${DB_USER}"
     ports:
       - 5432:5432
   monitoring:
@@ -35,7 +28,7 @@ services:
     depends_on:
       - copper
   mock:
-    image: "klumw/copper-mock"
+    image: "klumw/copper-mock:5.201-jdk11"
     ports:
       - 8082:8080
   telegraf:

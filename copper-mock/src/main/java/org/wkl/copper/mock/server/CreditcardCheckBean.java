@@ -48,6 +48,7 @@ public class CreditcardCheckBean {
     List<String> validCards = Arrays.asList(new String[]{"7277226662626234", "7277226662626235", "7277226662626237", "7277226662626238", "7277226662626239", "7277226662626240"});
 
     @Resource
+
     private TimerService timerService;
 
     @PostConstruct

@@ -3,8 +3,8 @@ services:
   copper:
     image: "payara/micro:jdk11"
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
+      - "POSTGRES_PASSWORD=${DB_PWD}"
+      - "POSTGRES_USER=${DB_USER}"
     entrypoint:
       - java
       - -XX:+UseContainerSupport
@@ -29,8 +29,8 @@ services:
   postgres:
     image: "postgres:12.2-alpine"
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
+      - "POSTGRES_PASSWORD=${DB_PWD}"
+      - "POSTGRES_USER=${DB_USER}"
     ports:
       - 5432:5432
   monitoring:
