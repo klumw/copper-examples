@@ -28,9 +28,9 @@ Viewing influxdb data in Copper-GUI
 ----------------------------------------
 Copper-GUI is available at http://localhost:8081. Log on with admin/admin and click overview.
 On the right you will see a button ***Connect to InfluxDb***.  
-Press the button and enter http://localhost:8686 for the influxdb connection and press submit.
-If connection is successful you will see a green dot and a pop up with a confirmation message.
-Don't forget to set the "Enable Influx Connection" in the connection popup to enabled.
+Press the button and enter http://localhost:8086 for the influxdb connection.  
+Set user and password to 'admin' and press submit.If connection is successful you will see a green dot and a pop up with a confirmation message.  
+Don't forget to set the "**Enable Influx Connection**" in the connection popup to enabled.
 With influxdb connection enabled you will see the data from influxdb in your Copper GUI chart.
 
 Viewing Charts with Chronograf
