@@ -32,6 +32,21 @@ Copper-GUI is reachable from a local browser via
 For login enter admin/admin
 After successful login you can see the connection to your copper-engine instance.
 
+Extensions
+----------
+**JSON data format**  
+Copper-full example comes with a ***MixedMode Serializer*** that persists workflow instance data in JSON format.  
+Uncomment the ***serializer*** property in ***applicationContext.xml*** to activate the serializer.  
+Together with the JSON functionality of PostgreSQL you can now search for workflow instance data on database level.  
+
+**High-Water Mark**  
+Input-Adapter services are featuring an additional High-Water Mark check. 
+If the amount of workflow instances waiting for dequeue is
+above High-Water Mark level, requests return a ***Server Error*** indicating
+that the system cannot handle any more load a the moment.  
+The **HIGH_WATER_MARK** level is set in the ***.env*** file. 
+ 
+
 
 
 

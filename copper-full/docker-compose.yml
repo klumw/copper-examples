@@ -5,6 +5,7 @@ services:
     environment:
       - "POSTGRES_PASSWORD=${DB_PWD}"
       - "POSTGRES_USER=${DB_USER}"
+      - "HIGH_WATER_MARK=${HIGH_WATER_MARK}"
     entrypoint:
       - java
       - -XX:+UseContainerSupport

@@ -27,8 +27,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.wkl.copper.full.data.Item;
 import org.wkl.copper.full.data.Order;
 
+import javax.management.ObjectName;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,9 +52,12 @@ public class InputAdapter {
     @Path("/submit")
     public Response createWorkflow(@RequestBody Order order) {
         try {
+            if (isHigWaterMark()) {
+                throw new Exception("High-Water Mark exceeded.");
+            }
             engine.run(WF, order);
             return Response.ok().build();
-        } catch (CopperException e) {
+        } catch (Exception e) {
             logger.error("Unable to create workflow instance", e);
             return Response.serverError().build();
         }
@@ -63,12 +68,16 @@ public class InputAdapter {
     public Response runTestData() {
         List<Order> orders = getTestData();
         try {
+            if (isHigWaterMark()) {
+                throw new Exception("High-Water Mark exceeded.");
+            }
             for (Order order : orders) {
                 engine.run(WF, order);
             }
             return Response.ok().entity("Copper tests launched.").build();
             //return Response.ok().build();
-        } catch (CopperException e) {
+        } catch (Exception e) {
+            logger.error("Unable to run tests", e);
             return Response.serverError().build();
         }
     }
@@ -101,11 +110,30 @@ public class InputAdapter {
                 order.getItems().add(itemList.get(i));
             }
             maxItems++;
-            if (maxItems >= orderList.size()) {
+            if (maxItems >= itemList.size()) {
                 maxItems = 1;
             }
             orderList.add(order);
         }
         return orderList;
+    }
+
+    /**
+     * Check if High-Water Mark is exceeded. HIGH_WATER_MARK os environment variable
+     * must be set.
+     *
+     * @return true if High-Water Mark is exceeded
+     */
+    private boolean isHigWaterMark() {
+        try {
+            ObjectName name = new ObjectName("copper.engine:name=persistent.engine");
+            Object count = ManagementFactory.getPlatformMBeanServer().getAttribute(name, "DequeuedCount");
+            long cnt = ((Long) count);
+            String h = System.getenv("HIGH_WATER_MARK");
+            return h != null && cnt > Long.valueOf(h);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

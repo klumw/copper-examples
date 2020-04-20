@@ -16,14 +16,17 @@
 
 package org.wkl.copper.full.test;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.wkl.copper.full.data.Item;
 import org.wkl.copper.full.data.Order;
+
+import java.io.IOException;
 
 public class OrderToJSON {
 
     public static void main(String[] args) {
 
+        ObjectMapper objectMapper = new ObjectMapper();
         Order order = new Order(74747474747L, "57575757", 7277226662626233L);
         Item item = new Item();
         item.setId(415);
@@ -32,8 +35,12 @@ public class OrderToJSON {
         item.setDescription("64 MByte SD Card");
         order.getItems().add(item);
         order.setCredit_card("7277226662626234");
-        JSONObject obj = new JSONObject(order);
-        System.out.println(obj.toString());
+        try {
+            objectMapper.writeValue(System.out,order);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

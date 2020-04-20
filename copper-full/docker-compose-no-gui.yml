@@ -1,7 +1,11 @@
 version: '3.1'
 services:
   copper:
-    image: "payara/micro:5.201"
+    image: "klumw/payara-micro:5.201-jdk11"
+    environment:
+      - "POSTGRES_PASSWORD=${DB_PWD}"
+      - "POSTGRES_USER=${DB_USER}"
+      - "HIGH_WATER_MARK=${HIGH_WATER_MARK}"
     entrypoint:
       - java
       - -XX:+UseContainerSupport
@@ -31,7 +35,7 @@ services:
     ports:
       - 5432:5432
   mock:
-    image: "klumw/copper-mock"
+    image: "klumw/copper-mock:5.201-jdk11"
     ports:
       - 8082:8080
 

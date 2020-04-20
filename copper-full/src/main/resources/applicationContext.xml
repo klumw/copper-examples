@@ -44,10 +44,16 @@
 
     <jee:jndi-lookup id="datasource_default" jndi-name="java:global/CopperDataSource"/>
 
+    <!-- Mixed Mode Serializer, serializes workflow instance data to JSON -->
+    <bean id="serializer" class="org.wkl.copper.full.engine.MixedModeSerializer" scope="singleton" />
+
     <bean id="dbDialect" class="org.copperengine.core.persistent.PostgreSQLDialect" scope="singleton"
           init-method="startup">
         <property name="wfRepository" ref="wfRepository"/>
         <property name="runtimeStatisticsCollector" ref="statisticsCollector"/>
+        <!-- Uncomment to persist workflow instance data as JSON
+        <property name="serializer" ref="serializer" />
+        -->
     </bean>
 
     <bean id="persistent.dbStorage" class="org.copperengine.core.persistent.ScottyDBStorage" scope="singleton">
