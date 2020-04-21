@@ -46,7 +46,7 @@ If data is persisted in JSON format, runtime set state info can be searched on d
 **High-Water Mark**  
 Input-Adapter services are featuring an additional High-Water Mark check. 
 If the amount of workflow instances waiting for dequeue is
-above High-Water Mark level, requests return a ***Server Error*** indicating
+above High-Water Mark level, services return a ***Server Error*** indicating
 that the system cannot handle any more load.  
 **HIGH_WATER_MARK** level is set in the ***.env*** file. 
 
