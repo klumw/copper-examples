@@ -57,16 +57,20 @@ public class OrderCheckWorkflow extends PersistentWorkflow<Order> {
     public void main() throws Interrupt {
         logger.info("OrderCheckWorkflow started.\n -Workflow instance: {}\n -{}", this.getId(), getData().toString());
         boolean isOrderValid = true;
+        setState("OrderIdCheck");
         checkOrderId();
+        setState("AccountIdCheck");
         if (checkAccountId() == false) {
             isOrderValid = false;
         }
         if (getData().getCredit_card() != null) {
+            setState("CreditCardCheck");
             if (checkCreditCard() == false) {
                 isOrderValid = false;
             }
         }
         logger.info("Order Check {} for:\n -{}\n -Workflow instance: {}", isOrderValid ? "succeeded" : "failed", getData().toString(), this.getId());
+        setState("Finished");
     }
 
     //set workflow to ERROR on invalid order id 
@@ -134,6 +138,18 @@ public class OrderCheckWorkflow extends PersistentWorkflow<Order> {
             logger.info("Credit card {} is valid.", this.getData().getCredit_card());
         }
         return true;
+    }
+
+    /**
+     * Set workflow instance state and persist data object.
+     * If data is persisted in JSON format (see MixedModeSerializer)
+     * the workflow instance data can be searched on database level (see also PostgreSQL JSON)
+     * @param state
+     * @throws Interrupt
+     */
+    private void setState(String state) throws Interrupt {
+        getData().setState(state);
+        savepoint();
     }
 
 }

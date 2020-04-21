@@ -36,15 +36,21 @@ Extensions
 ----------
 **JSON data format**  
 Copper-full example comes with a ***MixedMode Serializer*** that persists workflow instance data in JSON format.  
-Uncomment the ***serializer*** property in ***applicationContext.xml*** to activate the serializer.  
-Together with the JSON functionality of PostgreSQL you can now search for workflow instance data on database level.  
+Uncomment the ***serializer*** property in ***applicationContext.xml*** to activate JSON style persistence.  
+Together with the PostgreSQL JSON functionality you can search workflow instance data on database level.  
+
+**Runtime data in workflow instance data object**  
+OrderCheckWorkflow stores additional runtime info (*see setState method*) in the workflow instance data object.  
+If data is persisted in JSON format, runtime set state info can be searched on database level.   
 
 **High-Water Mark**  
 Input-Adapter services are featuring an additional High-Water Mark check. 
 If the amount of workflow instances waiting for dequeue is
 above High-Water Mark level, requests return a ***Server Error*** indicating
-that the system cannot handle any more load a the moment.  
-The **HIGH_WATER_MARK** level is set in the ***.env*** file. 
+that the system cannot handle any more load.  
+**HIGH_WATER_MARK** level is set in the ***.env*** file. 
+
+
  
 
 

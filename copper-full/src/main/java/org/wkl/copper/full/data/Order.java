@@ -34,6 +34,8 @@ public class Order implements Serializable {
 
     private long orderId;
 
+    private String state;
+
     public Order() {
     }
 
@@ -90,6 +92,14 @@ public class Order implements Serializable {
         this.orderId = orderId;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,7 +114,7 @@ public class Order implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getItems(), getCustomerId(), getCredit_card(), getAccountId(), getOrderId());
+        return Objects.hash(getItems(), getCustomerId(), getCredit_card(), getAccountId(), getOrderId(), getState());
     }
 
     @Override
@@ -115,6 +125,7 @@ public class Order implements Serializable {
                 ", credit_card='" + credit_card + '\'' +
                 ", accountId='" + accountId + '\'' +
                 ", orderId=" + orderId +
+                ", state='" + state + '\'' +
                 '}';
     }
 }
