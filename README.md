@@ -90,5 +90,8 @@ More information about the copper workflow engine can be found at:
 https://github.com/copper-engine   
 https://copper-engine.org/
 
+The Copper PostgreSQL Tool CPT for managing Copper Engine databases can be found at https://github.com/klumw/cpt
+
+
 
 
