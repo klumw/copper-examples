@@ -2,10 +2,11 @@ Copper-kubernetes Example
 ===================
 This setup deploys copper-engine, postgres db, copper-GUI and the REST based copper-mock using
 Kubernetes.  
-The deployment was tested on minikube v1.7.2 with Kubernetes v1.17.2. Make sure that your minikube
+The deployment was tested on minikube v1.12.0 with Kubernetes v1.18.3. Make sure that your minikube
 config has enough memory/cpu resources to run the example.
 The example shows a multi engine scenario where the number of running Copper Engine instances is 
-set by a ReplicaSet.   
+set by a ReplicaSet.  
+Depending on your Computer and Internet connection, initial startup can take quite some time.   
 
 Order check workflow
 ------------------
