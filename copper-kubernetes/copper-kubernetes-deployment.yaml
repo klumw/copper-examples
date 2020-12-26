@@ -66,34 +66,32 @@ spec:
               containerPort: 5432
 ---
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: copper-full
-  labels:
-    app: copper-full
 spec:
-  replicas: 2
   selector:
     matchLabels:
       tier: middletier
+  replicas: 2
   template:
     metadata:
       labels:
         tier: middletier
-    spec:    
+    spec:
       containers:
-      - name: copper-full
-        image: klumw/copper-full:5.201-jdk11
-        env:
-          - name: POSTGRES_PASSWORD
-            value: "postgres"
-          - name: POSTGRES_USER
-            value: "postgres"
-        ports:
-        - name: copper-input
-          containerPort: 8080
-        - name: jmx-port
-          containerPort: 1099
+        - name: copper-full
+          image: klumw/copper-full:5.201-jdk11
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: POSTGRES_USER
+              value: "postgres"
+          ports:
+            - name: copper-input
+              containerPort: 8080
+            - name: jmx-port
+              containerPort: 1099
 ---
 apiVersion: apps/v1
 kind: Deployment

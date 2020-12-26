@@ -48,7 +48,11 @@ Input-Adapter services are featuring an additional High-Water Mark check.
 If the amount of workflow instances waiting for dequeue is
 above High-Water Mark level, services return a ***Server Error*** indicating
 that the system cannot handle any more load.  
-**HIGH_WATER_MARK** level is set in the ***.env*** file. 
+**HIGH_WATER_MARK** level is set in the ***.env*** file.
+
+Trouble Shooting
+----------------
+If you encounter 'network xx not found' error messages from docker-compose run ***docker-compose up*** with the ***--force-recreate*** flag. 
 
 
  

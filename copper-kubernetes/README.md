@@ -1,11 +1,11 @@
-Copper-kubernetes Example
+Copper-Kubernetes Example
 ===================
 This setup deploys copper-engine, postgres db, copper-GUI and the REST based copper-mock using
 Kubernetes.  
-The deployment was tested on minikube v1.12.0 with Kubernetes v1.18.3. Make sure that your minikube
-config has enough memory/cpu resources to run the example.
+Deployment was tested on minikube v1.16.0 with Kubernetes v1.20.0. Make sure you provide 
+enough cpu/memory resources in minikube config.
 The example shows a multi engine scenario where the number of running Copper Engine instances is 
-set by a ReplicaSet.  
+set by a Deployment with 2 replicas.  
 Depending on your Computer and Internet connection, initial startup can take quite some time.   
 
 Order check workflow
@@ -17,9 +17,9 @@ If order id is invalid a Runtime Exception is thrown.
 
 Running the example
 -------------------
-From the ***copper-kubernetes*** dir run ***kubectl apply -f copper-kubernetes-deployment.yml***
-Run ***kubectl port-forward*** for copper-full pod on port 8080:8080.
-Run ***kubectl port-forward*** for copper-monitoring on port 8081:8080. 
+From ***copper-kubernetes*** dir run ***kubectl apply -f copper-kubernetes-deployment.yaml***
+Run ***kubectl port-forward*** for a copper-full-xxx pod on port 8080:8080.
+Run ***kubectl port-forward*** for the copper-monitoring-xxx pod on port 8081:8080. 
 
 Testing
 -------
