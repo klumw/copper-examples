@@ -42,6 +42,12 @@ public class InputAdapter {
         this.engine = engine;
     }
 
+
+    @GET
+    public Response test(){
+        return Response.ok().build();
+    }
+
     @GET
     @Path("/accounts/{personid}/{age}")
     public Response createWorkflow(@PathParam("personid") String personId, @PathParam("age") int age) {
