@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
         - name: postgres-12
-          image: postgres:12.2-alpine
+          image: postgres:12.5-alpine
           env:
             - name: POSTGRES_PASSWORD
               value: "postgres"
@@ -109,7 +109,7 @@ spec:
     spec:
       containers:
         - name: mock-server
-          image: klumw/copper-mock
+          image: klumw/copper-mock:5.2020.7-jdk11
           ports:
             - name: http
               containerPort: 8080

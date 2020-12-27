@@ -42,9 +42,9 @@ Viewing Charts with Chronograf
 Chronograf GUI is available at http://localhost:8888 (use Chrome Browser on Linux).  
 In Chronograf GUI go to Configuration and make sure that you have a valid connection to influxdb.
 Next you can create new charts by clicking on the Dashboard menu.  
-Click create new Dashboard and and the ***Add Data***.  
+Click ***create new Dashboard*** and then click ***Add Data***.  
 Click on ***telegraf.autogen*** to see possible parameters of Copper Workflow Engine. 
-Next click on ***default@copper:1099 copper parameters will appear on the right.
+Next click on ***default@copper:1099***, copper parameters will appear on the right.
 Now you can select the parameters that you want to vizualise.
 
 Resources
