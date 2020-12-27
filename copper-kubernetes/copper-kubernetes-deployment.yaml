@@ -28,7 +28,8 @@ metadata:
   name: copper
 spec:
   selector:
-    tier: middletier
+    app: copper-engine
+  type: NodePort
   ports:
     - name: jmx
       protocol: TCP
@@ -52,6 +53,7 @@ spec:
     metadata:
       labels:
         app: postgres-db
+        tier: backend
     spec:
       containers:
         - name: postgres-12
@@ -72,16 +74,17 @@ metadata:
 spec:
   selector:
     matchLabels:
-      tier: middletier
-  replicas: 2
+      app: copper-engine
+  replicas: 1
   template:
     metadata:
       labels:
+        app: copper-engine
         tier: middletier
     spec:
       containers:
         - name: copper-full
-          image: klumw/copper-full:5.201-jdk11
+          image: klumw/copper-full:5.2020.7-jdk11
           env:
             - name: POSTGRES_PASSWORD
               value: "postgres"
@@ -106,6 +109,7 @@ spec:
     metadata:
       labels:
         app: copper-mock
+        tier: backend
     spec:
       containers:
         - name: mock-server
@@ -127,10 +131,18 @@ spec:
     metadata:
       labels:
         app: copper-monitoring
+        tier: frontend
     spec:
       containers:
         - name: copper-gui
           image: copperengine/copper-monitoring
+          resources:
+            requests:
+              memory: "600Mi"
+              cpu: "250m"
+            limits:
+              memory: "700Mi"
+              cpu: "500m"
           env:
             - name: JMX_HOST
               value: "copper"
