@@ -19,7 +19,7 @@ In Chronograf you can create your own dashboards for individual reports.
 
 Running the example
 -------------------
-From CL in *copper-influxdb run ***docker-compose up***.
+From CL in *copper-influxdb* run ***docker-compose up***.
 All necessary images will be downloaded and started.  
 This example requires a machine with high CPU and RAM resources. 
 
