@@ -32,7 +32,7 @@ services:
     ports:
       - 8082:8080
   telegraf:
-    image: "telegraf:1.11-alpine"
+    image: "library/telegraf:1.16.3-alpine"
     command: bash -c "/wait-for-it.sh -t 0 influxdb:8086 && telegraf"
     volumes:
       - "./telegraf.conf:/etc/telegraf/telegraf.conf:ro"
@@ -40,11 +40,11 @@ services:
     depends_on:
       - "influxdb"
   influxdb:
-    image: "influxdb:1.7.9"
+    image: "influxdb:1.8.3"
     ports:
       - 8086:8086
   chronograf:
-    image: "chronograf:1.7.16-alpine"
+    image: "library/chronograf:1.8.7"
     command: "chronograf --influxdb-url=http://influxdb:8086"
     ports:
       - 8888:8888

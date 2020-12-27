@@ -1,8 +1,8 @@
 Copper InfluxDB
 ========
-This example shows how you can measure and store copper related time-series data in influxdb.  
+This example shows how to measure and store copper related time-series data in influxdb.  
 
-The following data can be measured:
+The following copper metrics are available:
 - Dequeue count
 - Error count
 - Finished count
@@ -23,6 +23,10 @@ From CL in *copper-influxdb run ***docker-compose up***.
 All necessary images will be downloaded and started.  
 This example requires a machine with high CPU and RAM resources. 
 
+Open your local browser and enter 
+***http://localhost:8080/copper/rest/orders/test***. 
+Repeat the tests runs to create enough data for later analysis.
+
 
 Viewing influxdb data in Copper-GUI
 ----------------------------------------
@@ -35,7 +39,7 @@ With influxdb connection enabled you will see the data from influxdb in your Cop
 
 Viewing Charts with Chronograf
 ------------------------------
-Chronograf GUI is available at http://localhost:8888.  
+Chronograf GUI is available at http://localhost:8888 (use Chrome Browser on Linux).  
 In Chronograf GUI go to Configuration and make sure that you have a valid connection to influxdb.
 Next you can create new charts by clicking on the Dashboard menu.  
 Click create new Dashboard and and the ***Add Data***.  

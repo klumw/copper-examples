@@ -2,7 +2,7 @@ Copper Prometheus
 ========
 This example shows how to measure and store copper related time-series data with prometheus.  
 
-The following data can be measured:
+The following copper metrics are available:
 - Dequeue count
 - Error count
 - Finished count
