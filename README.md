@@ -1,28 +1,24 @@
 Copper Cloud Examples
 ===============
-Copper Cloud Examples shows how to use the Copper Workflow Engine in a cloud native environment. 
+Copper Cloud Examples shows you how to use the Copper Workflow Engine in a cloud native environment. 
   
-  Copper provides the following features:
+Copper provides the following features:
+- Open Source (commercial support available)
 - Fully automated workflow execution
 - High Performance/Load
 - Auto-Recovery
 - Cloud Ready
 - Ease of use
-- Multi node cloud deployments
-- Integration into an existing Java environment
+- Multi node deployments
+- Integration into existing Java environment
 - Good Operational Insight
 - Easy to learn
 - Small footprint
 
+
 Copper doesn't feature a workflow modeler GUI.
 Using graphical modelers for more than 10 years I don't think that this is a real disadvantage.  
-A simple 'Hello World' looks great in a GUI, but with growing complexity UI models become 
-very fast confusing and hard to maintain.
 Copper workflows are just plain Java files, something that any Java developer knows inside out.
-
-One last thing that makes Copper a good choice is that it is under steady development since several years 
-and you can get professional support if needed.    
-  
 
 Example Projects
 ----------------
