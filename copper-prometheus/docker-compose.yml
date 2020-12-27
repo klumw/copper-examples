@@ -32,7 +32,7 @@ services:
     ports:
       - 8082:8080
   prometheus:
-    image: "prom/prometheus:v2.15.2"
+    image: "prom/prometheus:v2.23.0"
     ports:
       - 9090:9090
     volumes:
@@ -40,7 +40,7 @@ services:
     depends_on:
       - copper
   grafana:
-     image: "grafana/grafana:6.5.3"
+     image: "grafana/grafana:7.3.6"
      ports:
       - 3000:3000
      depends_on:

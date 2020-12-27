@@ -30,12 +30,11 @@ Viewing prometheus data in Grafana-GUI
 ----------------------------------------
 Grafana-GUI is available at http://localhost:3000.
 You can logon with admin/admin. 
-From Home Dashboard choose create first data source.
+From Home Dashboard choose **Create first data source**.
 Select Prometheus, in the URL enter http://prometheus:9090.
 Press the ***Save and Test*** button. If connection to prometheus is ok 
 you will see a confirmation popup.
-Now go to *Home Dashboard* and click ***Create your first Dashboard***, choose ***Add Query***
-and select your prometheus datasource from the ***Query*** drop down.
+Now go to *Home Dashboard* and click ***Create your first Dashboard*** and click ***Add Panel***.
 In the query panel click ***Metrics*** to select metric data for copper engine.
 Set ***Custom time range*** for your dashboard to 5 minutes to be able to see recent data.
 
