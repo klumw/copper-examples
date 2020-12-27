@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   copper:
-    image: "klumw/copper-full:prometheus"
+    image: "klumw/copper-full:prom-5.2020.7-jdk11"
     environment:
       - "POSTGRES_PASSWORD=${DB_PWD}"
       - "POSTGRES_USER=${DB_USER}"
@@ -12,7 +12,7 @@ services:
       - postgres
       - mock
   postgres:
-    image: "postgres:12.2-alpine"
+    image: "postgres:12.5-alpine"
     environment:
       - "POSTGRES_PASSWORD=${DB_PWD}"
       - "POSTGRES_USER=${DB_USER}"
@@ -28,7 +28,7 @@ services:
     depends_on:
       - copper
   mock:
-    image: "klumw/copper-mock:5.201-jdk11"
+    image: "klumw/copper-mock:5.2020.7-jdk11"
     ports:
       - 8082:8080
   prometheus:

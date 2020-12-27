@@ -1,6 +1,6 @@
 Copper Prometheus
 ========
-This example shows how you can measure and store copper related time-series data in prometheus.  
+This example shows how to measure and store copper related time-series data with prometheus.  
 
 The following data can be measured:
 - Dequeue count

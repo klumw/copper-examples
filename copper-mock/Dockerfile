@@ -1,4 +1,4 @@
-FROM klumw/payara-micro:5.201-jdk11
+FROM payara/micro:5.2020.7-jdk11
 
 COPY ./target/copper-mock-1.0-SNAPSHOT.war $DEPLOY_DIR
 ENTRYPOINT ["java","-XX:+UseContainerSupport","-XX:MaxRAMPercentage=90.0"]

@@ -1,4 +1,4 @@
-FROM klumw/copper-full:5.201-jdk11
+FROM klumw/copper-full:5.2020.7-jdk11
 
 COPY ./resources/jmx_prometheus_javaagent-0.12.1-SNAPSHOT.jar /opt/payara
 COPY ./resources/jmxconfig.yml /opt/payara
