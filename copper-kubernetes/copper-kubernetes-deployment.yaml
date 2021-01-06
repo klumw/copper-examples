@@ -29,7 +29,6 @@ metadata:
 spec:
   selector:
     app: copper-engine
-  type: NodePort
   ports:
     - name: jmx
       protocol: TCP
@@ -66,6 +65,22 @@ spec:
           ports:
             - name: db-port
               containerPort: 5432
+          startupProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 20
+          readinessProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 120
+            periodSeconds: 20
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -95,6 +110,24 @@ spec:
               containerPort: 8080
             - name: jmx-port
               containerPort: 1099
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 20
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 20
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -117,6 +150,24 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 20
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 20
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -141,7 +192,7 @@ spec:
               memory: "600Mi"
               cpu: "250m"
             limits:
-              memory: "700Mi"
+              memory: "1200Mi"
               cpu: "500m"
           env:
             - name: JMX_HOST
@@ -151,5 +202,21 @@ spec:
           ports:
             - name: http-mon
               containerPort: 8080
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 20
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
 ---
 
