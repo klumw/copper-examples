@@ -20,6 +20,8 @@ Copper doesn't feature a workflow modeler GUI.
 Using graphical modelers for more than 10 years I don't think that this is a real disadvantage.  
 Copper workflows are just plain Java files, something that any Java developer knows inside out.
 
+A detailed description of Copper Workflow Engine can be found in the */docs* folder.
+
 Example Projects
 ----------------
 Copper Cloud Examples shows how Copper can be used in a cloud/microservice environment.
@@ -28,7 +30,7 @@ In this setup copper-engine runs within a webapp that utilizes JPA, Pooling and 
 payara micro server.
 
 - ***copper-starter*** project is a simple setup to test some core functionalities. It has a simplistic workflow to show the basic 
-working of copper.
+working of Copper.
 
 - ***copper-full*** project provides Copper-GUI and a REST based mock-server to run more realistic tests against copper-engine.
 
@@ -38,7 +40,7 @@ In this example Chronograf GUI is used to visualize the metrics.
 - ***copper-prometheus*** shows how to add the prometheus time-series database to collect metrics.
 In this example Grafana GUI is used to visualize the metrics.
 
-- ***copper-kubernetes*** shows how to setup the copper-full example using a Kubernetes Cluster with multiple copper instances 
+- ***copper-kubernetes*** shows Copper running on a Kubernetes cluster. 
 
 Documentation
 -------------
