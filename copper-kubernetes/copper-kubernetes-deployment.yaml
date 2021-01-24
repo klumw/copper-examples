@@ -76,6 +76,7 @@ spec:
               port: 5432
             initialDelaySeconds: 5
             periodSeconds: 10
+            failureThreshold: 10
           livenessProbe:
             tcpSocket:
               port: 5432
@@ -122,6 +123,7 @@ spec:
               port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
+            failureThreshold: 10
           livenessProbe:
             httpGet:
               path: /health/live
@@ -145,7 +147,7 @@ spec:
         tier: backend
     spec:
       containers:
-        - name: mock-server
+        - name: copper-mock
           image: klumw/copper-mock:5.2020.7-jdk11
           ports:
             - name: http
@@ -162,6 +164,7 @@ spec:
               port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
+            failureThreshold: 10
           livenessProbe:
             httpGet:
               path: /health/live
@@ -213,6 +216,7 @@ spec:
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 10
+            failureThreshold: 20
           livenessProbe:
             tcpSocket:
               port: 8080
