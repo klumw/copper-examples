@@ -1,3 +1,5 @@
+# !!!This repository is no longer maintained!!!
+
 Copper Cloud Examples
 ===============
 Copper Cloud Examples shows you how to use the Copper Workflow Engine in a cloud native environment. 
